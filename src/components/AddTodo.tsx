@@ -1,11 +1,14 @@
-import { FormEvent } from 'react'
+import { FormEvent, useContext } from 'react'
+import { TodoContext } from '../context/context';
 
 const AddTodo = () => {
+    const {todo,setTodo} = useContext(TodoContext)
+
     const handleSubmit = (e:FormEvent<HTMLFormElement>) =>{
         e.preventDefault()
         const form = new FormData(e.currentTarget);
-        const todo = form.get('todo');
-        console.log(todo)
+        const todoText = form.get('todo');
+        setTodo((prev:string)=>prev+todoText)
 
     }
   return (
