@@ -1,7 +1,14 @@
 import { createContext, Dispatch, SetStateAction } from "react";
 
+export type TodoType = {
+    id:string;
+    task:FormDataEntryValue | null;
+    completed:boolean;
+    createdAt:Date;
+
+}
 type TodoContextType = {
-    todo: string[]
+    todo: TodoType[]
     setTodo: Dispatch<SetStateAction<never[]>> 
 
 }
