@@ -1,9 +1,7 @@
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
-import { Provider, TodoContext } from './context/context.tsx'
-import { useState } from 'react'
-
+import { Provider } from './context/context.tsx'
 
 export const Root = () =>{
 

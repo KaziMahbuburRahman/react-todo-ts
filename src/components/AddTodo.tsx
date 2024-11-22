@@ -1,8 +1,14 @@
 import { FormEvent, useContext } from 'react'
-import { TodoContext, TodoType } from '../context/context';
+import { TodoContext } from '../context/context';
 
 const AddTodo = () => {
-    const {todo,setTodo} = useContext(TodoContext)
+  const todoContext = useContext(TodoContext);
+
+  if (!todoContext) {
+      throw new Error("AddTodo must be used within a TodoContext.Provider");
+  }
+  
+  const { handleAddTodo } = todoContext;
     // id:number;
     // task:string;
     // completed:boolean;
@@ -12,18 +18,7 @@ const AddTodo = () => {
         e.preventDefault()
         const form = new FormData(e.currentTarget);
         const todoText = form.get('todo');
-        setTodo((prev:TodoType[])=>{
-          const newTodo:TodoType[]=[
-            {
-            id: Math.random().toString(),
-            task: todoText,
-            completed: false,
-            createdAt: new Date(),
-            },
-            ...prev
-          ]
-          return newTodo
-        })
+        handleAddTodo(todoText)
 
     }
   return (
