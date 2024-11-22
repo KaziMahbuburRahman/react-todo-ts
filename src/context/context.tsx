@@ -1,4 +1,4 @@
-import { createContext, Dispatch, SetStateAction } from "react";
+import { createContext, Dispatch, ReactNode, SetStateAction, useState } from "react";
 
 export type TodoType = {
     id:string;
@@ -13,3 +13,12 @@ type TodoContextType = {
 
 }
 export const TodoContext = createContext<TodoContextType | null>(null)
+
+export const Provider = ({children}:{children:ReactNode}) =>{
+const [todo, setTodo] = useState([])
+return (
+<TodoContext.Provider value={{todo,setTodo}}>
+{children}
+</TodoContext.Provider> 
+)
+}
