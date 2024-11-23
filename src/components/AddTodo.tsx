@@ -1,14 +1,9 @@
 import { FormEvent, useContext } from 'react'
-import { TodoContext } from '../context/context';
+import { useTodos } from '../context/context';
 
 const AddTodo = () => {
-  const todoContext = useContext(TodoContext);
 
-  if (!todoContext) {
-      throw new Error("AddTodo must be used within a TodoContext.Provider");
-  }
-  
-  const { handleAddTodo } = todoContext;
+  const { handleAddTodo } = useTodos();
     // id:number;
     // task:string;
     // completed:boolean;

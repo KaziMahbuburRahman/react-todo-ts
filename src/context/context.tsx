@@ -1,4 +1,4 @@
-import { createContext, Dispatch, ReactNode, SetStateAction, useState } from "react";
+import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useState } from "react";
 
 export type TodoType = {
     id:string;
@@ -33,8 +33,17 @@ const handleAddTodo = (task:FormDataEntryValue | null)=>{
       })
 }
 return (
-<TodoContext.Provider value={{todo,setTodo,handleAddTodo}}>
+<TodoContext.Provider value={{todo,setTodo,handleAddTodo,useTodos}}>
 {children}
 </TodoContext.Provider> 
 )
+}
+
+//consumer
+export const useTodos = ()=>{
+  const todosConsumer = useContext(TodoContext);
+  if(!todosConsumer){
+      throw new Error("useTodos used outside of Provider");
+  }
+  return todosConsumer;
 }
